@@ -22,27 +22,33 @@ export const defaultState = {
     tasks:[{
         name:"Refactor tests",
         id:"T1",
-        groups:"G1",
+        group:"G1",
         owner:"U1",
         isComplete:false
     },{
         name:"Meet with CTO",
         id:"T2",
-        groups:"G1",
+        group:"G1",
         owner:"U1",
         isComplete:false
     },{
         name:"Compile ES6",
         id:"T3",
-        groups:"G2",
+        group:"G2",
         owner:"U2",
         isComplete:false
     },{
         name:"Update component snapshots",
         id:"T4",
-        groups:"G2",
+        group:"G2",
         owner:"U2",
         isComplete:false
+    },{
+        name:"Production optimizations",
+        id:"T4",
+        group:"G3",
+        owner:"U2",
+        isComplete:true
     }],
     comments:[{
         owner:"U1",

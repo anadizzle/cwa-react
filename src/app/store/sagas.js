@@ -46,13 +46,15 @@ export function* userAuthenticationSaga(){
     while(true) {
         const { username, password } = yield take(mutations.REQUEST_AUTHENTICATE_USER);
         try {
-            const { data } = axios.post(url + `/authenticate`, (username, password));
+            const { data } = yield axios.post(url + `/authenticate`, (username, password));
             if (!data) {
                 throw new Error();
             }
+            console.log("Authenticated!",data)
         } catch (e) {
             console.log("cant authenticate");
-            yield put(mutations.processAthenticateUser(mutations.NOT_AUTHENTICATED))
+            yield put(mutations.processAthenticateUser(mutations.NOT_AUTHENTICATED));
         }
+        
     }
 }

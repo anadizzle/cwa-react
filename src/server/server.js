@@ -3,15 +3,16 @@ import cors from 'cors';
 import bodyParser from 'body-parser';
 import { connectDB } from './connect-db';
 import './initialize-db';
+import { authentictionRoute } from './authenticate';
 
 let port = 2139;
 let app = express()
 
 app.listen(port, console.log("Server listening on port", port));
 
-// app.get('/', (req,res)=>{
-//     res.send("Hello World");
-// });
+app.get('/', (req,res)=>{
+    res.send("Hello World");
+});
 
 app.use(
     cors(),

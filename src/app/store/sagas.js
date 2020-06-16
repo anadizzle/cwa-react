@@ -3,6 +3,7 @@ import {v1 as uuid} from 'uuid';
 import axios from 'axios';
 
 import * as mutations from './mutations';
+import { history } from './history'
 
 const url = "http://localhost:2139";
 
@@ -46,11 +47,17 @@ export function* userAuthenticationSaga(){
     while(true) {
         const { username, password } = yield take(mutations.REQUEST_AUTHENTICATE_USER);
         try {
-            const { data } = yield axios.post(url + `/authenticate`, (username, password));
+            const { data } = yield axios.post(url + `/authenticate`, {username, password});
             if (!data) {
                 throw new Error();
             }
-            console.log("Authenticated!",data)
+            console.log("Authenticated!",data);
+
+            yield put(mutations.setState(data.state));
+            yield put(mutations.processAthenticateUser(mutations.AUTHENTICATED));
+
+            history.push('/dashboard');
+
         } catch (e) {
             console.log("cant authenticate");
             yield put(mutations.processAthenticateUser(mutations.NOT_AUTHENTICATED));
